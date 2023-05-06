@@ -1,0 +1,38 @@
+-- 				EXERCISE-3
+
+CREATE TABLE CUSTOMER (
+CUSTOMER_ID INT PRIMARY KEY NOT NULL,
+CUSTOMER_NAME VARCHAR(30) NOT NULL,
+CITY VARCHAR(30) NOT NULL,
+GRADE INT,
+SALESMAN_ID INT NOT NULL);
+
+CREATE TABLE SALESMAN(
+SALESMAN_ID INT PRIMARY KEY NOT NULL,
+NAME VARCHAR(30) NOT NULL,
+CITY VARCHAR(30) NOT NULL,
+COMMISSION FLOAT NOT NULL
+);
+
+SELECT * FROM CUSTOMER;
+SELECT * FROM SALESMAN;
+
+INSERT INTO CUSTOMER VALUES (3002,'Nick Rimando','New York',100,5001);
+INSERT INTO CUSTOMER VALUES (3007,'Brad Davis','New York',200,5001),
+(3005,'Graham Zusi','California',200,5002),(3008,'Julian Green','London',300,5002),
+(3004,'Fabian Jhonson','Paris',300,5006),(3009,'Geoff Cameron','Berlin',100,5003),
+(3003,'Jozy Altidor','Moscow',200,5007);
+INSERT INTO CUSTOMER VALUES (3001,'Brad Guzan','London',NULL,5005); 
+
+INSERT INTO SALESMAN VALUES (5001,'James Hoog','New York',0.15),
+(5002,'Nail Knite','Paris',0.13),(5005,'Pit Alex','London',0.11),
+(5006,'Mc Lyon','Paris',0.14),(5007,'Paul Adam','Rome',0.13),
+(5003,'Lauson Hen','San Jose',0.12);
+
+-- EXERCISE-3 QUERY
+-- Write a SQL query to find those customers with a grade less than 100.
+--  It should return cust_name, customer city, grade, salesman, and salesman city. 
+-- The result should be ordered by ascending customer_id.
+
+SELECT CUSTOMER_NAME,CUSTOMER.CITY AS CUSTOMER_CITY,GRADE,NAME AS SALESMAN_NAME,SALESMAN.CITY AS SALESMAN_CITY 
+FROM CUSTOMER,SALESMAN WHERE GRADE<100 AND CUSTOMER.SALESMAN_ID=SALESMAN.SALESMAN_ID;
